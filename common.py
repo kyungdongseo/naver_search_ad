@@ -6,14 +6,27 @@ import urllib.parse
 import urllib.request
 import ssl
 from functools import wraps
-from naver_search_ad import settings
+
+
+try:
+    import naver_search_ad_settings
+except ModuleNotFoundError:
+    print('api 관한 정보가 필요합니다')
+    print('naver_search_ad_settings.py 파일을 생성후')
+    print('경계선 아래의 내용을 입력하십시오')
+    print('='*22+'경계선'+'='*23)
+    print('CUSTOMER_ID = "여러분의 customer id를 입력해주세요"')
+    print('API_KEY = "여러분의 api key를 입력해주세요"')
+    print('SECRET_KEY = "여러분의 secret key를 입력해주세요"')
+    quit()
+
 
 def naver(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        customer_id = settings.CUSTOMER_ID
-        api_key = settings.API_KEY
-        secret_key = settings.SECRET_KEY
+        customer_id = naver_search_ad_settings.CUSTOMER_ID
+        api_key = naver_search_ad_settings.API_KEY
+        secret_key = naver_search_ad_settings.SECRET_KEY
 
         unix_epoch = int(time.time())
         data = f(*args, **kwargs)
