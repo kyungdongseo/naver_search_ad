@@ -7,7 +7,8 @@ naver_search_ad
 
 설치
 ----
-**pip install naver_search_ad**    
+**pip install naver_search_ad**   
+
 사용법
 ------
 1. 위의 명령어를 이용하여 naver_search_ad 패키지 설치
