@@ -1,9 +1,9 @@
 naver_search_ad
----------------
-**naver_search_ad**는 네이버 검색 광고 오픈 API의 파이썬 래퍼(Python wrapper)입니다.    
+---------------    
+**naver_search_ad** 는 네이버 검색 광고 오픈 API의 파이썬 래퍼(Python wrapper)입니다.    
 현재는 연관 검색어(키워드 도구)만 구현되어 있습니다.    
-네이버 검색광고 OPEN API에 관한 자세한 내용은 아래 주소에서 확인하실 수 있습니다.
-[네이버 검색 광고 OPEN API 공식문서](http://naver.github.io/searchad-apidoc/#/tags/RelKwdStat)
+네이버 검색광고 OPEN API에 관한 자세한 내용은 아래 주소에서 확인하실 수 있습니다.    
+[네이버 검색 광고 OPEN API 공식문서](http://naver.github.io/searchad-apidoc/#/tags/RelKwdStat)    
 설치
 ----
 **pip install naver_search_ad**
