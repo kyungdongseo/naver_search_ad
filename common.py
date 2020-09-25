@@ -1,3 +1,5 @@
+import re
+import configparser
 import time
 import json
 import base64
@@ -8,25 +10,35 @@ import ssl
 from functools import wraps
 
 
-try:
-    import naver_search_ad_settings
-except ModuleNotFoundError:
-    print('api 관한 정보가 필요합니다')
-    print('naver_search_ad_settings.py 파일을 생성후')
-    print('경계선 아래의 내용을 입력하십시오')
-    print('='*22+'경계선'+'='*23)
-    print('CUSTOMER_ID = "여러분의 customer id를 입력해주세요"')
-    print('API_KEY = "여러분의 api key를 입력해주세요"')
-    print('SECRET_KEY = "여러분의 secret key를 입력해주세요"')
-    quit()
+config = configparser.ConfigParser()
+config.read('naver.ini')
+CUSTOMER_ID = config['DEFAULT'].get('CUSTOMER_ID')
+API_KEY = config['DEFAULT'].get('API_KEY')
+SECRET_KEY = config['DEFAULT'].get('SECRET_KEY')
+
+if CUSTOMER_ID is None:
+    raise Exception('CUSTOMER_ID를 설정해주십시오.')
+if API_KEY is None:
+    raise Exception('API_KEY를 설정해주십시오.')
+if SECRET_KEY is None:
+    raise Exception('SECRET_KEY를 설정해주십시오.')
+
+CUSTOMER_ID = re.sub('^\'|^\"|\'$|\"$', '', CUSTOMER_ID)
+API_KEY = re.sub('^\'|^\"|\'$|\"$', '', API_KEY)
+SECRET_KEY = re.sub('^\'|^\"|\'$|\"$', '', SECRET_KEY)
+
+
+##############################################################################
+# 공통 함수                                                                  #
+##############################################################################
 
 
 def naver(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        customer_id = naver_search_ad_settings.CUSTOMER_ID
-        api_key = naver_search_ad_settings.API_KEY
-        secret_key = naver_search_ad_settings.SECRET_KEY
+        customer_id = CUSTOMER_ID
+        api_key = API_KEY
+        secret_key = SECRET_KEY
 
         unix_epoch = int(time.time())
         data = f(*args, **kwargs)

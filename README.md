@@ -14,22 +14,24 @@ naver_search_ad
 1. 위의 명령어를 이용하여 naver_search_ad 패키지 설치
 2. OPEN API Key 발급받기
     - 네이버의 [How to issue the API License and the secret key](http://naver.github.io/searchad-apidoc/#/guides)를 참조하여 CustomerID, ApiLicense, SecretKey 를 준비합니다.
-3. **naver_search_ad_settings.py** 파일을 만들고 아래의 정보를 작성하십시오.
+3. **naver.ini** 파일을 만들고 아래의 정보를 작성하십시오.
 ```python
+[DEFAULT]
 CUSTOMER_ID = '발급받은 customer id'
 API_KEY = '발급받은 API License'
 SECRET_KEY = '발급받은 secret key'
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
-MacBook-Pro:~/kyungdongseo$ cat >> naver_search_ad_settings.py << EOF
+MacBook-Pro:~/kyungdongseo$ cat >> naver.ini << EOF
+> [DEFAULT]
 > CUSTOMER_ID = '발급받은 customerid'
 > API_KEY = '발급받은 API License'
 > SECRET_KEY = '발급받은 secret key'
 > EOF
 
 MacBook-Pro:~/kyungdongseo$ ls
-naver_search_ad_settings.py
+naver.ini    
 
 MacBook-Pro:~/kyungdongseo$ python
 >>> from naver_search_ad.keywords import related_keyword
