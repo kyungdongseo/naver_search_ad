@@ -52,10 +52,10 @@ def _write_xls(data_list, filename):
     wb = Workbook(write_only=True)
     ws = wb.create_sheet()
 
-    headers = list(set(itertools.chain.from_iterable(data)))
+    headers = list(set(itertools.chain.from_iterable(data_list)))
     ws.append(headers)
 
-    for elements in data:
+    for elements in data_list:
         ws.append([elements.get(h) for h in headers])
 
     wb.save(filename)
