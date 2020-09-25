@@ -46,7 +46,7 @@ def related_keyword(keywords):
     return response
 
 
-def write_xls(filename, data):
+def _write_xls(data_list, filename):
     '''엑셀로 저장(xls)'''
 
     wb = Workbook(write_only=True)
@@ -59,4 +59,11 @@ def write_xls(filename, data):
         ws.append([elements.get(h) for h in headers])
 
     wb.save(filename)
+
+
+def related_keyword_to_xls(keywords, filename):
+    r = related_keyword(keywords)
+    keyword_list = r.get('keywordList')
+    if keyword_list:
+        _write_xls(keyword_list, filename)
 
