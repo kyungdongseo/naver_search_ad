@@ -23,6 +23,8 @@ SECRET_KEY = '발급받은 secret key'
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
+MacBook-Pro:~/kyungdongseo$ pip install naver_search_ad
+
 MacBook-Pro:~/kyungdongseo$ cat >> naver.ini << EOF
 > [DEFAULT]
 > CUSTOMER_ID = '발급받은 customerid'
@@ -58,25 +60,12 @@ MacBook-Pro:~/kyungdongseo$ python
                   'plAvgDepth': 15,
                   'relKeyword': '집게스탠드',
                   'related_point': 1199},
-                 {'compIdx': '높음',
-                  'monthlyAveMobileClkCnt': 1.3,
-                  'monthlyAveMobileCtr': 0.12,
-                  'monthlyAvePcClkCnt': 0.7,
-                  'monthlyAvePcCtr': 0.15,
-                  'monthlyMobileQcCnt': 1250,
-                  'monthlyPcQcCnt': 520,
-                  'plAvgDepth': 15,
-                  'relKeyword': '꽂이',
-                  'related_point': 1198},
-                 {'compIdx': '높음',
-                  'monthlyAveMobileClkCnt': 43.3,
-                  'monthlyAveMobileCtr': 8.55,
-                  'monthlyAvePcClkCnt': 26.6,
-                  'monthlyAvePcCtr': 5.91,
-                  'monthlyMobileQcCnt': 550,
-                  'monthlyPcQcCnt': 480,
-                  'plAvgDepth': 15,
-                  'relKeyword': 'POP제작',
-                  'related_point': 1197},
                   # 나머지는 생략...]}
+
+>>> from naver_search_ad.keywords import related_keyword_to_xls
+>>> related_keyword_to_xls('POP꽂이', './related_keyword.xls')
+>>> exit()
+
+MacBook-Pro:~/kyungdongseo$ ls
+naver.ini  related_keyword.xls
 ```
